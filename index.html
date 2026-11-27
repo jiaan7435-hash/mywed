@@ -14,15 +14,35 @@
         <a href="contact.html">联系我</a>
         <!-- 这里填入了刚刚生成的 Cloudflare 网盘公网链接 -->
         <a href="javascript:void(0);" onclick="alert('网盘服务正在升级维护中，请稍后再来😭莫欺少年穷😡😡😭😭~');" style="position: relative; display: inline-block;">
-    我的网盘
-    <span style="position: absolute; top: -10px; right: -20px; background: #ff4d4f; color: white; font-size: 10px; padding: 2px 5px; border-radius: 4px; transform: scale(0.85); white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">维护中</span>
+            我的网盘
+            <span style="position: absolute; top: -10px; right: -20px; background: #ff4d4f; color: white; font-size: 10px; padding: 2px 5px; border-radius: 4px; transform: scale(0.85); white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">维护中</span>
         </a>
     </nav>
+    
     <div class="container">
         <img src="avatar.jpg" alt="Avatar" class="avatar">
         <h1>暖阳 / ajq</h1>
         <div class="wx-id">微信号：ajq130121</div>
         <div class="bio">你好！欢迎来到我的个人主页。我热爱技术，喜欢探索未知的领域。这是用一台安卓手机搭建的公网服务器，欢迎参观！</div>
     </div>
+
+    <!-- ================= 留言板开始 ================= -->
+    <!-- 用一个 div 包裹，限制一下宽度并居中，看起来更协调 -->
+    <div style="max-width: 450px; margin: 30px auto; padding: 0 20px;">
+        <div id="tcomment"></div>
+    </div>
+
+    <!-- 引入 Twikoo 并初始化 -->
+    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.38/dist/twikoo.all.min.js"></script>
+    <script>
+        twikoo.init({
+            // ⚠️ 这里是你刚刚穿透出来的 8080 端口网址
+            envId: 'https://award-lafayette-hawaii-bills.trycloudflare.com', 
+            el: '#tcomment',
+            lang: 'zh-CN'
+        })
+    </script>
+    <!-- ================= 留言板结束 ================= -->
+
 </body>
 </html>
