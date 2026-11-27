@@ -26,23 +26,27 @@
         <div class="bio">你好！欢迎来到我的个人主页。我热爱技术，喜欢探索未知的领域。这是用一台安卓手机搭建的公网服务器，欢迎参观！</div>
     </div>
 
-    <!-- ================= 留言板开始 ================= -->
-    <!-- 用一个 div 包裹，限制一下宽度并居中，看起来更协调 -->
+    <!-- ================= Giscus 留言板开始 ================= -->
     <div style="max-width: 450px; margin: 30px auto; padding: 0 20px;">
-        <div id="tcomment"></div>
+        <div class="giscus"></div>
     </div>
 
-    <!-- 引入 Twikoo 并初始化 -->
-    <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.38/dist/twikoo.all.min.js"></script>
-    <script>
-        twikoo.init({
-            // ⚠️ 这里是你刚刚穿透出来的 8080 端口网址
-            envId: 'https://poetry-senator-latino-led.trycloudflare.com', 
-            el: '#tcomment',
-            lang: 'zh-CN'
-        })
+    <script src="https://giscus.app/client.js"
+            data-repo="jiaan7435-hash/mywed"
+            data-repo-id="R_kgDOV1zwWA"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOV1zwWM4DMFgB"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="dark_dimmed"
+            data-lang="zh-CN"
+            crossorigin="anonymous"
+            async>
     </script>
-    <!-- ================= 留言板结束 ================= -->
+    <!-- ================= Giscus 留言板结束 ================= -->
 
 </body>
 </html>
