@@ -28,6 +28,8 @@
 </head>
 <body>
     <canvas id="bg"></canvas>
+    <div class="glow" id="glow"></div>
+
     <nav>
         <div class="nav-inner">
             <a href="index.html" class="active">首页</a>
@@ -37,6 +39,7 @@
             <a href="javascript:void(0);" onclick="alert('网盘服务维护中')">我的网盘</a>
         </div>
     </nav>
+
     <main class="card">
         <div class="avatar-wrap">
             <img src="avatar.jpg" alt="Avatar" class="avatar">
@@ -47,7 +50,79 @@
         <div class="wx"><span class="dot"></span>微信号：ajq130121</div>
         <div class="bio">你好！欢迎来到我的个人主页。我热爱技术，喜欢探索未知的领域。这是用一台安卓手机搭建的公网服务器，欢迎参观！</div>
     </main>
+
+    <!-- Giscus 留言板容器 -->
     <div class="giscus-wrap">
         <div class="giscus"></div>
     </div>
-    <script src="https://giscus.app/client.
+
+    <!-- Giscus 完整脚本 -->
+    <script src="https://giscus.app/client.js"
+            data-repo="jiaan7435-hash/mywed"
+            data-repo-id="R_kgDOV1zwWA"
+            data-category="Announcements"
+            data-category-id="DIC_kwDOV1zwWM4DMFgB"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="dark_dimmed"
+            data-lang="zh-CN"
+            crossorigin="anonymous"
+            async>
+    </script>
+
+    <!-- 星空背景与鼠标高光动态特效 -->
+    <script>
+        var bg = document.getElementById('bg');
+        var glow = document.getElementById('glow');
+        var card = document.querySelector('.card');
+        
+        document.addEventListener('mousemove', function(e) {
+            var x = e.clientX / window.innerWidth;
+            var y = e.clientY / window.innerHeight;
+            glow.style.left = (x * 100) + '%';
+            glow.style.top = (y * 100) + '%';
+            if(card) {
+                var rect = card.getBoundingClientRect();
+                var mx = e.clientX - rect.left;
+                var my = e.clientY - rect.top;
+                card.style.setProperty('--mx', mx + 'px');
+                card.style.setProperty('--my', my + 'px');
+            }
+        });
+
+        var c = document.getElementById('bg');
+        var ctx = c.getContext('2d');
+        var stars = [];
+        for (var i = 0; i < 100; i++) {
+            stars.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                r: Math.random() * 1.5,
+                dx: Math.random() * 0.2 - 0.1,
+                dy: Math.random() * 0.2 - 0.1
+            });
+        }
+        function resize() { c.width = window.innerWidth; c.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
+        
+        function draw() {
+            ctx.clearRect(0, 0, c.width, c.height);
+            ctx.fillStyle = 'rgba(0, 255, 204, 0.4)';
+            stars.forEach(function(s) {
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fill();
+                s.x += s.dx;
+                s.y += s.dy;
+                if (s.x < 0 || s.x > c.width) s.dx *= -1;
+                if (s.y < 0 || s.y > c.height) s.dy *= -1;
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+</html>
