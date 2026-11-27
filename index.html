@@ -13,11 +13,15 @@ nav{width:100%;position:sticky;top:0;z-index:100;background:linear-gradient(180d
 .nav-inner{max-width:1000px;margin:0 auto;padding:12px 16px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
 nav a{color:#93a0ae;text-decoration:none;font-size:15px;font-weight:600;padding:8px 17px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.01));box-shadow:0 1px 0 rgba(255,255,255,.16) inset;transition:.28s}
 nav a:hover,nav a.active{color:#eafffb;background:linear-gradient(180deg,rgba(0,255,204,.2),rgba(0,255,204,.06));border-color:rgba(0,255,204,.45);box-shadow:0 1px 0 rgba(255,255,255,.4) inset,0 0 24px rgba(0,255,204,.28)}
-.card{--mx:50%;--my:0%;position:relative;z-index:2;max-width:660px;width:calc(100% - 36px);margin:54px auto 24px;padding:46px 36px 40px;text-align:center;border-radius:32px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05) 34%,rgba(255,255,255,.015) 62%,rgba(255,255,255,.08)),rgba(12,18,28,.34);backdrop-filter:blur(28px) saturate(190%) brightness(1.06);-webkit-backdrop-filter:blur(28px) saturate(190%) brightness(1.06);border:1px solid rgba(255,255,255,.2);box-shadow:0 1px 0 rgba(255,255,255,.42) inset,0 -1px 0 rgba(255,255,255,.1) inset,0 28px 70px rgba(0,0,0,.55),0 0 80px rgba(0,255,204,.09);transition:transform .12s ease-out}
+.card{--mx:50%;--my:0%;position:relative;z-index:2;max-width:660px;width:calc(100% - 36px);margin:54px auto 24px;padding:22px 36px 40px;text-align:center;border-radius:32px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05) 34%,rgba(255,255,255,.015) 62%,rgba(255,255,255,.08)),rgba(12,18,28,.34);backdrop-filter:blur(28px) saturate(190%) brightness(1.06);-webkit-backdrop-filter:blur(28px) saturate(190%) brightness(1.06);border:1px solid rgba(255,255,255,.2);box-shadow:0 1px 0 rgba(255,255,255,.42) inset,0 -1px 0 rgba(255,255,255,.1) inset,0 28px 70px rgba(0,0,0,.55),0 0 80px rgba(0,255,204,.09);transition:transform .12s ease-out}
 .card::before{content:"";position:absolute;top:0;left:8%;right:8%;height:1.5px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.85) 30%,rgba(0,255,204,.7) 60%,transparent);filter:blur(.4px)}
 .card::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(300px circle at var(--mx) var(--my),rgba(255,255,255,.3),rgba(255,255,255,.1) 34%,transparent 64%);opacity:0;transition:opacity .35s;pointer-events:none;mix-blend-mode:screen}
 .card:hover::after{opacity:1}
-.avatar-wrap{position:relative;width:136px;height:136px;margin:0 auto 22px}
+.cover{position:relative;width:100%;height:190px;border-radius:22px;overflow:hidden;margin-bottom:22px;border:1px solid rgba(255,255,255,.25);box-shadow:0 12px 34px rgba(0,0,0,.45),0 0 40px rgba(124,92,255,.18)}
+.cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 6s ease}
+.card:hover .cover img{transform:scale(1.08)}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(6,10,16,.55));border-radius:inherit}
+.avatar-wrap{position:relative;width:136px;height:136px;margin:-78px auto 18px;z-index:3}
 .avatar{width:100%;height:100%;border-radius:50%;object-fit:cover;border:1.5px solid rgba(255,255,255,.55);box-shadow:0 0 0 3px rgba(0,255,204,.18),0 8px 30px rgba(0,255,204,.35),0 0 70px rgba(124,92,255,.22);transition:.45s;position:relative;z-index:2}
 .avatar:hover{transform:scale(1.06)}
 .ring{position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(255,255,255,.35);animation:spin 14s linear infinite}
@@ -26,75 +30,4 @@ nav a:hover,nav a.active{color:#eafffb;background:linear-gradient(180deg,rgba(0,
 h1{font-size:34px;letter-spacing:4px;margin-bottom:12px;font-weight:800}
 .grad{background:linear-gradient(100deg,#fff,#b8fff2 30%,#00ffcc 55%,#7c5cff);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(0,255,204,.4))}
 .sub{font-size:14px;color:#a9f7e8;font-family:Consolas,monospace;margin-bottom:18px}
-.wx{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#c9fff5;padding:8px 17px;border-radius:999px;margin-bottom:22px;font-family:Consolas,monospace;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.22);box-shadow:0 1px 0 rgba(255,255,255,.4) inset;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.dot{width:7px;height:7px;border-radius:50%;background:#0fc;box-shadow:0 0 10px #0fc;animation:blip 1.6s infinite}
-@keyframes blip{0%,100%{opacity:1}50%{opacity:.5}}
-.bio{font-size:15px;line-height:1.9;color:#b6c3d0;text-align:left;padding:20px 22px;border-radius:18px;border:1px solid rgba(255,255,255,.12);border-left:3px solid rgba(0,255,204,.75);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 10px 30px rgba(0,0,0,.35)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
-.stat{--mx:50%;--my:0%;position:relative;padding:16px 8px;border-radius:18px;overflow:hidden;background:linear-gradient(165deg,rgba(255,255,255,.12),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.14);box-shadow:0 1px 0 rgba(255,255,255,.3) inset,0 10px 26px rgba(0,0,0,.3);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:.3s}
-.stat:hover{transform:translateY(-4px);border-color:rgba(0,255,204,.42);box-shadow:0 1px 0 rgba(255,255,255,.45) inset,0 14px 34px rgba(0,255,204,.16)}
-.stat::after{content:"";position:absolute;inset:0;background:radial-gradient(120px circle at var(--mx) var(--my),rgba(255,255,255,.26),transparent 62%);opacity:0;transition:.3s}
-.stat:hover::after{opacity:1}
-.stat b{display:block;font-size:13px;letter-spacing:1px;color:#eafffb;font-family:Consolas,monospace}
-.stat span{display:block;font-size:11px;color:#93a0ae;margin-top:5px}
-.actions{margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{position:relative;display:inline-block;padding:13px 32px;border-radius:999px;font-weight:700;font-size:14px;text-decoration:none;color:#021a15;overflow:hidden;border:1px solid rgba(255,255,255,.5);background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.12) 48%,rgba(255,255,255,.04)),linear-gradient(120deg,rgba(0,255,204,.55),rgba(124,92,255,.45));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(255,255,255,.75) inset,0 12px 30px rgba(0,255,204,.28);transition:.22s}
-.btn::after{content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .55s}
-.btn:hover::after{left:120%}
-.btn:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.85) inset,0 16px 40px rgba(0,255,204,.45)}
-.ghost{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03));color:#c9fff5;border-color:rgba(255,255,255,.28);box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 10px 24px rgba(0,0,0,.3)}
-.guestbook{position:relative;z-index:2;width:calc(100% - 36px);max-width:660px;margin:0 auto 60px;padding:26px 22px;border-radius:26px;background:linear-gradient(165deg,rgba(255,255,255,.12),rgba(255,255,255,.025));backdrop-filter:blur(22px) saturate(170%);-webkit-backdrop-filter:blur(22px) saturate(170%);border:1px solid rgba(255,255,255,.14);box-shadow:0 1px 0 rgba(255,255,255,.3) inset,0 20px 50px rgba(0,0,0,.4)}
-.guestbook-title{font-size:15px;font-weight:700;color:#d9fff8;letter-spacing:2px;margin-bottom:16px;padding-left:12px;border-left:3px solid rgba(0,255,204,.8);text-shadow:0 0 16px rgba(0,255,204,.35)}
-@media(max-width:600px){.card{padding:34px 20px 30px;margin:26px auto;border-radius:26px}h1{font-size:27px}.stats{grid-template-columns:1fr}.glow{display:none}}
-</style>
-</head>
-<body>
-<canvas id="bg"></canvas>
-<div class="glow" id="glow"></div>
-<nav><div class="nav-inner">
-<a href="index.html" class="active">首页</a>
-<a href="about.html">关于我</a>
-<a href="works.html">我的作品</a>
-<a href="contact.html">联系我</a>
-</div></nav>
-<main class="card">
-<div class="avatar-wrap"><img class="avatar" src="avatar.jpg" alt="头像"><span class="ring"></span></div>
-<h1><span class="grad">暖阳</span></h1>
-<div class="sub">热爱技术，喜欢折腾。</div>
-<div class="wx"><span class="dot"></span>微信号：ajq130121</div>
-<p class="bio">你好！欢迎来到我的个人主页。我热爱技术，喜欢探索未知的领域。这是用一台安卓手机搭建的公网服务器，欢迎参观！</p>
-<div class="stats">
-<div class="stat"><b>ONLINE</b><span>运行中</span></div>
-<div class="stat"><b>Android</b><span>自建服务器</span></div>
-<div class="stat"><b>∞</b><span>好奇心</span></div>
-</div>
-<div class="actions">
-<a class="btn" href="works.html">看看我的作品</a>
-<a class="btn ghost" href="about.html">了解我</a>
-</div>
-</main>
-<div class="guestbook">
-<div class="guestbook-title">留言板</div>
-<div class="giscus"></div>
-</div>
-<script>
-var bg=document.getElementById('bg'),ctx=bg.getContext('2d'),stars=[];function resize(){bg.width=innerWidth;bg.height=innerHeight;stars=[];for(var i=0;i<120;i++)stars.push({x:Math.random()*bg.width,y:Math.random()*bg.height,r:Math.random()*1.6+.4,a:Math.random()})}function draw(){ctx.clearRect(0,0,bg.width,bg.height);for(var i=0;i<stars.length;i++){var s=stars[i];s.a+=0.01;if(s.a>1){s.a=0.1}ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,6.28);ctx.fillStyle='rgba(150,255,240,'+s.a+')';ctx.fill()}requestAnimationFrame(draw)}resize();draw();addEventListener('resize',resize);
-var glow=document.getElementById('glow'),card=document.querySelector('.card'),cards=document.querySelectorAll('.stat'),mx=0,my=0,lx=0,ly=0;document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;glow.style.left=mx+'px';glow.style.top=my+'px';var els=[card].concat([].slice.call(cards));els.forEach(function(el){var r=el.getBoundingClientRect();el.style.setProperty('--mx',(mx-r.left)+'px');el.style.setProperty('--my',(my-r.top)+'px')})});(function loop(){lx+=(mx-lx)/16;ly+=(my-ly)/16;card.style.transform='perspective(1000px) rotateX('+((ly/innerHeight-.5)*-6)+'deg) rotateY('+((lx/innerWidth-.5)*8)+'deg)';requestAnimationFrame(loop)})();
-</script>
-<script src="https://giscus.app/client.js"
-        data-repo="jiaan7435-hash/mywed"
-        data-repo-id="R_kgDOV1zwWA"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOV1zwWM4DMFgB"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_dimmed"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
-</script>
-</body>
-</html>
+.wx{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#c9fff5;padding:8px 17px;border-radius:999px;margin-bottom:22px;font-family:Consolas,monospace;background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.22);box-shadow:0 1px 0 rgba(255,255,255,.4) inset;
