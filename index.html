@@ -10,30 +10,30 @@ body{min-height:100vh;overflow-x:hidden;font-family:system-ui,"PingFang SC",sans
 #starCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 .cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,220,0.18),transparent 65%);filter:blur(10px);pointer-events:none}
 nav{position:sticky;top:0;z-index:99;background:rgba(10,14,24,0.65);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.08)}
-.nav-wrap{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.nav-wrap{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 nav a{padding:9px 18px;border-radius:100px;text-decoration:none;color:#a0b4cc;font-size:15px;background:rgba(255,255,255,0.05);transition:.25s}
 nav a.active,nav a:hover{color:#00ffdc;background:rgba(0,255,220,0.12)}
 .main{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;padding:60px 20px;display:grid;gap:30px}
 .main-card{background:rgba(20,28,42,0.46);border-radius:24px;padding:28px;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08)}
 .main-card h2{margin-bottom:16px;font-size:22px;color:#fff}
 .banner{width:100%;height:200px;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);margin-bottom:24px}
-.banner img{width:100%;height:100%;object-fit:cover}
+.banner img{width:100%;height:100%;object-fit:cover;object-position:center}
 .avatar-box{width:140px;height:140px;margin:-80px auto 20px;position:relative;z-index:3}
-.avatar-box img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.4);box-shadow:0 0 4px rgba(0,255,220,0.3),0 10px 30px rgba(0,0,0,0.4)}
+.avatar-box img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center;border:2px solid rgba(255,255,255,0.4);box-shadow:0 0 4px rgba(0,255,220,0.3),0 10px 30px rgba(0,0,0,0.4)}
 .rotate-ring{position:absolute;inset:-10px;border-radius:50%;border:1px solid rgba(0,255,220,0.3);animation:rotate 10s linear infinite}
 @keyframes rotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 .info-text{text-align:center;margin-bottom:10px}
 .info-text h1{font-size:28px;font-weight:700;color:#fff}
 .sub-title{color:#8fb8d8;margin:14px 0;max-width:700px;margin-left:auto;margin-right:auto}
-.online-tag{display:inline-flex;align-items:center;gap:8px;border:18px;padding:4px 18px;background:rgba(0,255,220,0.08);border-radius:999px;margin-bottom:22px}
+.online-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(0,255,220,0.08);border-radius:999px;margin-bottom:22px}
 .dot{width:8px;height:8px;border-radius:50%;background:#00ffdc;animation:blink 1.7s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
 .intro-text{padding:20px;border-radius:18px;border:1px solid rgba(0,255,220,0.08);background:rgba(28,38,54,0.4);line-height:1.8;color:#b8d2e8;margin-bottom:22px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .stat-item{padding:18px;border-radius:16px;background:rgba(255,255,255,0.04);text-align:center;transition:0.25s}
+.stat-item:hover{border-color:rgba(0,255,220,0.3);transform:translateY(-4px)}
 .stat-item b{display:block;font-size:24px;color:#00ffdc;margin-bottom:4px}
 .stat-item span{color:#90a6bc;font-size:14px}
-.guestbook{transform:translateY(-4px)}
 .guestbook-title{font-size:18px;font-weight:700;color:#b8dff8;letter-spacing:1px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08)}
 </style>
 </head>
@@ -51,20 +51,19 @@ nav a.active,nav a:hover{color:#00ffdc;background:rgba(0,255,220,0.12)}
 <div class="main">
 <div class="main-card">
 <div class="banner">
-<img src="https://picsum.photos/id/1035/1200/400">
+<img src="hero.jpg" alt="封面">
 </div>
 <div class="avatar-box">
 <div class="rotate-ring"></div>
-<img src="https://picsum.photos/id/1025/400/400">
+<img src="avatar.jpg" alt="头像">
 </div>
 <div class="info-text">
 <h1>暖阳</h1>
 <p class="sub-title">热爱折腾 | 刷机 / Termux / 前端小站</p>
-<div class="online-tag"><span class="dot"></span>在线</div>
+<div class="online-tag"><span class="dot"></span>微信号：ajq130121</div>
 </div>
 <div class="intro-text">
-你好，欢迎来到我的小站。平时喜欢研究安卓、Termux脚本、内网穿透、写点简单网页。
-保持热爱，慢慢探索。
+你好！欢迎来到我的个人主页。我热爱技术，喜欢探索未知的领域。这是用一台安卓手机搭建的公网服务器，欢迎参观！
 </div>
 <div class="stats">
 <div class="stat-item"><b>99+</b><span>项目</span></div>
@@ -74,7 +73,7 @@ nav a.active,nav a:hover{color:#00ffdc;background:rgba(0,255,220,0.12)}
 </div>
 <div class="main-card guestbook">
 <div class="guestbook-title">留言板</div>
-<p style="color:#94acc4;">功能待开发...</p>
+<div class="giscus"></div>
 </div>
 </div>
 <script>
@@ -87,4 +86,4 @@ function init(){resize();stars=Array.from({length:220},createStar)}
 function draw(){ctx.clearRect(0,0,w,h);ctx.fillStyle="#fff";stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.y+=s.speed;if(s.y>h){s.y=0;s.x=Math.random()*w}});requestAnimationFrame(draw)}
 init();draw();
 const glow=document.querySelector('.cursor-glow');
-document.onmousemove=e=>{glow.style.left=e.clien
+document.onmousem
