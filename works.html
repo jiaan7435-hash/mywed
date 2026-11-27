@@ -1,11 +1,80 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>我的作品 - ajq</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><a href="index.html">首页</a><a href="about.html">关于我</a><a href="works.html" class="active">我的作品</a><a href="contact.html">联系我</a></nav>
-<div class="container">
-    <h2>我的作品</h2>
-    <div class="list">
-        <div class="list-item"><h3>📱 手机公网服务器搭建</h3><p>使用 Termux + Python + Serveo 实现，也就是你现在看到的这个网站。</p></div>
-        <div class="list-item"><h3>🔧 安卓系统调校优化</h3><p>对手机进行性能监控与底层参数调节。</p></div>
-        <div class="list-item"><h3>🚧 更多作品开发中...</h3><p>敬请期待。</p></div>
-    </div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>作品 - 暖阳</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;overflow-x:hidden;font-family:system-ui,"PingFang SC",sans-serif;background:#050710;color:#d8e8f5;position:relative}
+#starCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,220,0.18),transparent 65%);filter:blur(10px);pointer-events:none}
+nav{position:sticky;top:0;z-index:99;background:rgba(10,14,24,0.65);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-wrap{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+nav a{padding:9px 18px;border-radius:100px;text-decoration:none;color:#a0b4cc;font-size:15px;background:rgba(255,255,255,0.05);transition:.25s}
+nav a.active,nav a:hover{color:#00ffdc;background:rgba(0,255,220,0.12)}
+.main{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;padding:60px 20px;display:grid;gap:30px}
+.main-card{background:rgba(20,28,42,0.46);border-radius:24px;padding:28px;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08)}
+.main-card h2{margin-bottom:16px;font-size:22px;color:#fff}
+.line{width:80px;height:3px;background:#00ffdc;border-radius:2px;margin-bottom:20px}
+.card-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.item-card{background:rgba(255,255,255,0.04);border-radius:18px;padding:20px;border:1px solid rgba(255,255,255,0.06);transition:0.25s}
+.item-card:hover{border-color:rgba(0,255,220,0.2);transform:translateY(-4px)}
+.item-card h3{color:#fff;margin-bottom:8px}
+.item-card p{color:#a0b4cc;font-size:14px;line-height:1.6;margin-bottom:12px}
+.item-card a{color:#00ffdc;text-decoration:none;font-size:14px}
+</style>
+</head>
+<body>
+<canvas id="starCanvas"></canvas>
+<div class="cursor-glow"></div>
+<nav>
+<div class="nav-wrap">
+<a href="index.html">首页</a>
+<a href="about.html">关于我</a>
+<a href="works.html" class="active">作品</a>
+<a href="guest.html">留言</a>
 </div>
-</body></html>
+</nav>
+<div class="main">
+<div class="main-card">
+<h2>我的作品</h2>
+<div class="line"></div>
+<div class="card-list">
+<div class="item-card">
+<h3>Termux 工具脚本</h3>
+<p>一些自用跑分、文件处理、网络测试脚本，安卓终端一键运行。</p>
+<a href="#">查看详情 →</a>
+</div>
+<div class="item-card">
+<h3>内网穿透小站</h3>
+<p>手机端搭建临时网页、文件分享服务，配合穿透访问外网。</p>
+<a href="#">查看详情 →</a>
+</div>
+<div class="item-card">
+<h3>美化相关</h3>
+<p>安卓美化、布局调试相关资源与测试方案。</p>
+<a href="#">查看详情 →</a>
+</div>
+<div class="item-card">
+<h3>个人主页</h3>
+<p>就是当前这个星空个人站点，前端自制。</p>
+<a href="#">查看详情 →</a>
+</div>
+</div>
+</div>
+</div>
+<script>
+const canvas=document.getElementById('starCanvas');
+const ctx=canvas.getContext('2d');
+let w,h,stars=[];
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+function createStar(){return{x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+0.2,speed:Math.random()*0.4+0.05}}
+function init(){resize();stars=Array.from({length:220},createStar)}
+function draw(){ctx.clearRect(0,0,w,h);ctx.fillStyle="#fff";stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.y+=s.speed;if(s.y>h){s.y=0;s.x=Math.random()*w}});requestAnimationFrame(draw)}
+init();draw();
+const glow=document.querySelector('.cursor-glow');
+document.onmousemove=e=>{glow.style.left=e.clientX-250+'px';glow.style.top=e.clientY-250+'px'}
+</script>
+</body>
+</html>

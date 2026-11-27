@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>留言 - 暖阳</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;overflow-x:hidden;font-family:system-ui,"PingFang SC",sans-serif;background:#050710;color:#d8e8f5;position:relative}
+#starCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,220,0.18),transparent 65%);filter:blur(10px);pointer-events:none}
+nav{position:sticky;top:0;z-index:99;background:rgba(10,14,24,0.65);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-wrap{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+nav a{padding:9px 18px;border-radius:100px;text-decoration:none;color:#a0b4cc;font-size:15px;background:rgba(255,255,255,0.05);transition:.25s}
+nav a.active,nav a:hover{color:#00ffdc;background:rgba(0,255,220,0.12)}
+.main{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;padding:60px 20px;display:grid;gap:30px}
+.main-card{background:rgba(20,28,42,0.46);border-radius:24px;padding:28px;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08)}
+.main-card h2{margin-bottom:16px;font-size:22px;color:#fff}
+.line{width:80px;height:3px;background:#00ffdc;border-radius:2px;margin-bottom:20px}
+input,textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(0,255,220,0.12);border-radius:12px;padding:14px;color:#fff;font-size:15px;margin-bottom:14px;outline:none}
+input:focus,textarea:focus{border-color:#00ffdc}
+textarea{min-height:140px;resize:vertical}
+button{padding:12px 24px;border-radius:999px;border:none;background:#00ffdc;color:#050710;font-weight:bold;font-size:15px;cursor:pointer}
+.msg-item{padding:16px;background:rgba(255,255,255,0.04);border-radius:14px;margin-top:14px}
+.msg-name{color:#00ffdc;margin-bottom:6px}
+.msg-text{color:#b8d2e8;font-size:14px;line-height:1.7}
+</style>
+</head>
+<body>
+<canvas id="starCanvas"></canvas>
+<div class="cursor-glow"></div>
+<nav>
+<div class="nav-wrap">
+<a href="index.html">首页</a>
+<a href="about.html">关于我</a>
+<a href="works.html">作品</a>
+<a href="guest.html" class="active">留言</a>
+</div>
+</nav>
+<div class="main">
+<div class="main-card">
+<h2>留言板</h2>
+<div class="line"></div>
+<input id="name" placeholder="你的昵称">
+<textarea id="msg" placeholder="写下想说的话..."></textarea>
+<button onclick="addMsg()">提交留言</button>
+<div id="msgList"></div>
+</div>
+</div>
+<script>
+const canvas=document.getElementById('starCanvas');
+const ctx=canvas.getContext('2d');
+let w,h,stars=[];
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+function createStar(){return{x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+0.2,speed:Math.random()*0.4+0.05}}
+function init(){resize();stars=Array.from({length:220},createStar)}
+function draw(){ctx.clearRect(0,0,w,h);ctx.fillStyle="#fff";stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.y+=s.speed;if(s.y>h){s.y=0;s.x=Math.random()*w}});requestAnimationFrame(draw)}
+init();draw();
+const glow=document.querySelector('.cursor-glow');
+document.onmousemove=e=>{glow.style.left=e.clientX-250+'px';glow.style.top=e.clientY-250+'px'}
+
+// 本地留言（刷新会清空，纯前端）
+function getList(){
+  let raw=localStorage.getItem("msgs")
+  return raw?JSON.parse(raw):[]
+}
+function save(arr){
+  localStorage.setItem("msgs",JSON.stringify(arr))
+}
+function render(){
+  let arr=getList()
+  let box=document.getElementById("msgList")
+  box.innerHTML=""
+  arr.forEach(i=>{
+    box.innerHTML+=`
+    <div class="msg-item">
+      <div class="msg-name">${i.nick}</div>
+      <div class="msg-text">${i.content}</div>
+    </div>`
+  })
+}
+function addMsg(){
+  let nick=document.getElementById("name").value.trim()
+  let cont=document.getElementById("msg").value.trim()
+  if(!nick||!cont) return alert("昵称和留言不能为空")
+  let arr=getList()
+  arr.push({nick,content:cont})
+  save(arr)
+  render()
+  document.getElementById("name").value=""
+  document.getElementById("msg").value=""
+}
+render()
+</script>
+</body>
+</html>

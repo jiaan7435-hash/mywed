@@ -1,11 +1,66 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>关于我 - ajq</title><link rel="stylesheet" href="style.css"></head><body>
-<nav><a href="index.html">首页</a><a href="about.html" class="active">关于我</a><a href="works.html">我的作品</a><a href="contact.html">联系我</a></nav>
-<div class="container">
-    <h2>关于我</h2>
-    <div class="bio">
-        <p>大家好，我是 ajq（暖阳）。</p><br>
-        <p>目前是一名热爱折腾的极客玩家，喜欢探索安卓底层、服务器搭建以及各种有趣的技术。平时喜欢看动漫、听音乐。</p><br>
-        <p>有任何问题可以联系我😋 </p>
-    </div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>关于我 - 暖阳</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;overflow-x:hidden;font-family:system-ui,"PingFang SC",sans-serif;background:#050710;color:#d8e8f5;position:relative}
+#starCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,220,0.18),transparent 65%);filter:blur(10px);pointer-events:none}
+nav{position:sticky;top:0;z-index:99;background:rgba(10,14,24,0.65);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-wrap{max-width:1080px;margin:0 auto;padding:14px 16px;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+nav a{padding:9px 18px;border-radius:100px;text-decoration:none;color:#a0b4cc;font-size:15px;background:rgba(255,255,255,0.05);transition:.25s}
+nav a.active,nav a:hover{color:#00ffdc;background:rgba(0,255,220,0.12)}
+.main{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;padding:60px 20px;display:grid;gap:30px}
+.main-card{background:rgba(20,28,42,0.46);border-radius:24px;padding:28px;backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08)}
+.main-card h2{margin-bottom:16px;font-size:22px;color:#fff}
+.line{width:80px;height:3px;background:#00ffdc;border-radius:2px;margin-bottom:20px}
+p{line-height:1.8;color:#b8d2e8;margin-bottom:14px}
+.tag-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.tag{padding:6px 14px;border-radius:999px;background:rgba(0,255,220,0.08);color:#00ffdc;font-size:14px;border:1px solid rgba(0,255,220,0.15)}
+</style>
+</head>
+<body>
+<canvas id="starCanvas"></canvas>
+<div class="cursor-glow"></div>
+<nav>
+<div class="nav-wrap">
+<a href="index.html">首页</a>
+<a href="about.html" class="active">关于我</a>
+<a href="works.html">作品</a>
+<a href="guest.html">留言</a>
 </div>
-</body></html>
+</nav>
+<div class="main">
+<div class="main-card">
+<h2>关于暖阳</h2>
+<div class="line"></div>
+<p>一名喜欢折腾安卓设备的爱好者，沉迷研究 Root、KSU、刷机、Termux 脚本和内网穿透。</p>
+<p>喜欢捣鼓各种小工具、写简单网页，慢慢学习前端和基础的 Python。享受把想法做成可以运行的小东西。</p>
+<p>技术路上慢慢摸索，保持好奇心，不急于求成。</p>
+<div class="tag-group">
+<span class="tag">Termux</span>
+<span class="tag">Android</span>
+<span class="tag">Root</span>
+<span class="tag">内网穿透</span>
+<span class="tag">前端</span>
+<span class="tag">Python</span>
+</div>
+</div>
+</div>
+<script>
+const canvas=document.getElementById('starCanvas');
+const ctx=canvas.getContext('2d');
+let w,h,stars=[];
+function resize(){w=canvas.width=innerWidth;h=canvas.height=innerHeight}
+function createStar(){return{x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+0.2,speed:Math.random()*0.4+0.05}}
+function init(){resize();stars=Array.from({length:220},createStar)}
+function draw(){ctx.clearRect(0,0,w,h);ctx.fillStyle="#fff";stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.y+=s.speed;if(s.y>h){s.y=0;s.x=Math.random()*w}});requestAnimationFrame(draw)}
+init();draw();
+const glow=document.querySelector('.cursor-glow');
+document.onmousemove=e=>{glow.style.left=e.clientX-250+'px';glow.style.top=e.clientY-250+'px'}
+</script>
+</body>
+</html>
